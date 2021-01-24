@@ -11,7 +11,7 @@ using namespace cv;
 
 extern "C"
 {
-	__declspec(dllexport) void ProcessImage(Color32 **rawImage, int width, int height)
+	__declspec(dllexport) void ProcessImage(Color32 **rawImage, int width, int height, Matrix4x4 &cameraPosition, Vector2 &ufoPosition, Vector2 &laserPosition)
 	{
 
 		// create an opencv object sharing the same data space
@@ -29,6 +29,11 @@ extern "C"
 		cvtColor(edges, edges, COLOR_GRAY2RGBA);
 		normalize(edges, edges, 0, 1, NORM_MINMAX);
 		multiply(image, edges, image);
+
+		ufoPosition.x = 0.5f;
+		ufoPosition.y = -2.0f;
+
+		cameraPosition.m0 = 7.2;
 
 		// end processing the image
 		// ************************************************
