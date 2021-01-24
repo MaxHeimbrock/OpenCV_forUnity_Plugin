@@ -25,3 +25,5 @@ struct Matrix4x4
 };
 
 extern "C" __declspec(dllexport) void ProcessImage(Color32 **rawImage, int width, int height, Matrix4x4 &cameraPosition, Vector2 &ufoPosition, Vector2 &laserPosition);
+
+void FindUfoAndLaser(Mat &playArea, Vector2 &ufoPosition, Vector2 &laserPosition);
