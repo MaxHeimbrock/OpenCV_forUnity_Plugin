@@ -17,8 +17,12 @@ extern "C"
 		// create an opencv object sharing the same data space
 		Mat image(height, width, CV_8UC4, *rawImage);
 
+		// in OpenCV the image should be handled in BGR as all functions use this format per default, but Unity provides it as RGBA
+		Mat image_rgb;
+		cv::cvtColor(image, image_rgb, cv::COLOR_RGBA2BGR);
+
 		// start with flip (in both directions) if your image looks inverted
-		flip(image, image, -1);
+		flip(image_rgb, image_rgb, -1);
 
 		// start processing the image
 		// ************************************************
